@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, DATA_LOADED } from "../constants/action-types";
+import { ADD_ARTICLE, API_ERRORED, DATA_LOADED } from "../constants/action-types";
 
 const initialState = {
     articles: [],
@@ -10,6 +10,10 @@ function rootReducer(state = initialState, action) {
         return Object.assign({}, state, {
             articles: state.articles.concat(action.payload)
         });
+    }
+
+    if (action.type === API_ERRORED) {
+        return state;
     }
 
     if (action.type === DATA_LOADED) {
